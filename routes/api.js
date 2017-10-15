@@ -23,4 +23,24 @@ router.get('/:resource', function (req,res) {
     }
 });
 
+router.post('/:resource', function (req,res) {
+    var resource = req.params.resource;
+
+    if (resource == 'todos') {
+        ToDosController.create(req.body, function (err, result) {
+            if (err) {
+                res.json({
+                    confirmation: 'fail',
+                    message: err
+                });
+                return
+            }
+            res.json({
+                confirmation: 'success',
+                result: result
+            })
+        })
+    }
+});
+
 module.exports = router;

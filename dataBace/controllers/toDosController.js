@@ -12,4 +12,13 @@ module.exports = {
         }).limit(50);
     },
 
+    create: function(params, callback){
+        toDo.create(params, function(err, blocker){
+            if(err){
+                callback(err, null);
+                return
+            }
+            callback(null, blocker);
+        });
+    },
 };
